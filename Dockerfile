@@ -62,8 +62,8 @@ ENV OFFICE_REL=6.0
 #
 # =========================================================================
 
-#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-ENV OFFICE_HOST=http://pkgnginx
+ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+#ENV OFFICE_HOST=http://pkgnginx
 
 # =========================================================================
 
@@ -83,10 +83,13 @@ RUN apt-get -y update \
  && apt-get install -y --no-install-recommends \
             openjdk-8-jre \
  && mkdir -p /usr/local/share/libreoffice \
- && wget -qO- ${OFFICE_URL} | tar xvz -C /usr/local/share/libreoffice \
+ && cd /usr/local/share/libreoffice \
+ && wget ${OFFICE_URL} \ 
+ && tar fxvz ${OFFICE_PKG} \
  && dpkg -i /usr/local/share/libreoffice/${OFFICE_DIR}/DEBS/*.deb \
  && rm -R /usr/local/share/libreoffice/${OFFICE_DIR} \
  && apt-get clean all \
+ && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
  && chmod +x /libreoffice/*.run  
 
@@ -97,4 +100,4 @@ VOLUME /documents
 # =========================================================================
 
 ENTRYPOINT ["/my_init", "--quiet"]
-CMD ["/usr/bin/libreoffice6.0"]
+CMD ["/usr/bin/libreoffice"]
