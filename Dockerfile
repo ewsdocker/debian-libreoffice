@@ -57,8 +57,8 @@ ENV OFFICE_VER=6.0.3
 #     'libreoffice' and 'DEBS' in the installation directory path
 #
 # =========================================================================
-#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-ENV OFFICE_HOST=http://pkgnginx
+ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+#ENV OFFICE_HOST=http://pkgnginx
 
 # =========================================================================
 
