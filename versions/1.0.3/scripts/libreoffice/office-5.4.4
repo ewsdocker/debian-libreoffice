@@ -1,0 +1,53 @@
+#!/bin/bash
+# =========================================================================
+# =========================================================================
+#
+#	office-5.4.4
+#	  office-5.4.4 docker run command for Libre Office 5.4.4
+#		in a Debian 9.3 (Stretch) docker image.
+#
+# =========================================================================
+#
+# @author Jay Wheeler.
+# @version 0.0.1
+# @copyright © 2017. EarthWalk Software.
+# @license Licensed under the Academic Free License version 3.0
+# @package debian-libreoffice
+# @subpackage office-5.4.4
+#
+# =========================================================================
+#
+#	Copyright © 2017. EarthWalk Software
+#	Licensed under the Academic Free License, version 3.0.
+#
+#	Refer to the file named License.txt provided with the source,
+#	or from
+#
+#		http://opensource.org/licenses/academic.php
+#
+# =========================================================================
+# =========================================================================
+#
+#   office-5.4.4 - a sample start script to the designated folder:
+#
+#   Using this script to stop libreoffice:5.4.4, the
+#
+#     - Configuration is stored in ${HOME}/.config/libreoffice of the calling 
+#          user on the docker host, and
+#
+#     - Documents are stored in ${HOME}/Documents on the docker host
+#
+#   The remainder of the options are to connect the created container
+#   to the docker host X11 Server and synchronize the container to the 
+#   docker host TZ, to maintain accurate timestamps.
+#
+# =========================================================================
+
+docker run --name=office \
+           -v /etc/localtime:/etc/localtime:ro \
+           -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v ${HOME}/.config/libreoffice:/root \
+           -v ${HOME}/Documents:/documents \
+       libreoffice:5.4.4

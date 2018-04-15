@@ -1,0 +1,54 @@
+#!/bin/bash
+# =========================================================================
+# =========================================================================
+#
+#	libresetup
+#	  libresetup for Libre Office 5.4.4.2-2 
+#		in a Debian 9.3 (Stretch) docker image.
+#
+# =========================================================================
+#
+# @author Jay Wheeler.
+# @version 0.0.1
+# @copyright © 2017. EarthWalk Software.
+# @license Licensed under the Academic Free License version 3.0
+# @package debian-libreoffice
+# @subpackage libresetup
+#
+# =========================================================================
+#
+#	Copyright © 2017. EarthWalk Software
+#	Licensed under the Academic Free License, version 3.0.
+#
+#	Refer to the file named License.txt provided with the source,
+#	or from
+#
+#		http://opensource.org/licenses/academic.php
+#
+# =========================================================================
+# =========================================================================
+#
+#   libresetup copies sample start scripts to the designated folder:
+#
+#       office-5.4.4   -   sample office start script
+#       office-5.4.4-2 -   sample office start script with mounted media
+#
+#   start office with
+#
+#     docker run --rm \
+#                --name=office \
+#                -v ${HOME}/bin:/userbin \
+#            libreoffice:5.4.4 libresetup
+#
+#docker run --rm --name=office -v ${HOME}/bin:/userbin libreoffice:5.4.4 libresetup
+#
+# =========================================================================
+
+cp -r /libreoffice/*.* /userbin
+lines=$( find . -name "libreoffice-startcenter*" )
+
+echo 
+echo "libreoffice container runner copied to /userbin"
+echo
+
+exit 0
