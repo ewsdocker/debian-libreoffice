@@ -2,9 +2,9 @@
 # =========================================================================
 # =========================================================================
 #
-#	libresetup
-#	  libresetup for Libre Office 6.0.3
-#		in a Debian 9 (Stretch) docker image.
+#	office-setup
+#	  office-setup docker run command for Libre Office 5.4.4-2 
+#		in a Debian 9.3 (Stretch) docker image.
 #
 # =========================================================================
 #
@@ -13,7 +13,7 @@
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the Academic Free License version 3.0
 # @package debian-libreoffice
-# @subpackage libresetup
+# @subpackage office-setup
 #
 # =========================================================================
 #
@@ -28,22 +28,10 @@
 # =========================================================================
 # =========================================================================
 #
-#   debian-office2.run - a sample start script to the designated folder:
-#
-#      Configuration is stored in ${HOME}/.config/libreoffice of the calling user
-#      Documents are stored in /media/docs-2018/document on the docker host
-#
-#   The remainder of the options are to connect the created container
-#   to the docker host X11 Server and synchronized to the docker host 
-#   Time and Date, so created/modified files will have a proper timestamp.
+#   A copy of the setup command. Since it only copies files to the supplied
+#   /userbin, it may run as often as needed (e.g. - the libreoffice container
+#   has been removed and re-created).
 #
 # =========================================================================
 
-docker run -e DISPLAY=unix${DISPLAY} \
-           -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
-           -v /etc/localtime:/etc/localtime:ro \
-           -v ${HOME}/.config/libreoffice:/root \
-           -v /media/docs-2018/documents:/documents \
-           --name=office \
-        ewsdocker/debian-libreoffice:latest
+docker run --name=office -v ${HOME}/bin:/userbin ewsdocker/debian-libreoffice:6.0.3 libresetup

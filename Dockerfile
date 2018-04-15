@@ -3,12 +3,12 @@
 #
 #	Dockerfile
 #	  Dockerfile for Libre Office 6.0.3.2 
-#		in a Debian 9.4 (Stretch) docker image.
+#		in a Debian 9 docker image.
 #
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 1.0.4
+# @version 1.0.5
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the Academic Free License version 3.0
 # @package debian-libreoffice
@@ -40,6 +40,10 @@ ENV DEBIAN_FRONTEND noninteractive
 #
 # =========================================================================
 ENV OFFICE_VER=6.0.3
+ENV OFFICE_REL=6.0
+
+#ENV OFFICE_VER=5.4.6
+#ENV OFFICE_REL=5.4
 
 # =========================================================================
 #
@@ -57,8 +61,9 @@ ENV OFFICE_VER=6.0.3
 #     'libreoffice' and 'DEBS' in the installation directory path
 #
 # =========================================================================
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=http://pkgnginx
 
 # =========================================================================
 
@@ -82,7 +87,8 @@ RUN apt-get -y update \
  && dpkg -i /usr/local/share/libreoffice/${OFFICE_DIR}/DEBS/*.deb \
  && rm -R /usr/local/share/libreoffice/${OFFICE_DIR} \
  && apt-get clean all \
- && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program
+ && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
+ && chmod +x /libreoffice/*.run  
 
 # =========================================================================
 

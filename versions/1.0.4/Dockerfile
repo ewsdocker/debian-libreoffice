@@ -2,8 +2,8 @@
 # =========================================================================
 #
 #	Dockerfile
-#	  Dockerfile for Libre Office 5.4.6 
-#		in a Debian 9.4 (Stretch) docker image.
+#	  Dockerfile for Libre Office 6.0.3.2 
+#		in a Debian 9 docker image.
 #
 # =========================================================================
 #
@@ -39,72 +39,43 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
+#ENV OFFICE_VER=6.0.3
+#ENV OFFICE_REL=6.3
+
+ENV OFFICE_VER=5.4.6
+ENV OFFICE_REL=5.4
 
 # =========================================================================
 #
-# LibreOffice 5.4.6 for Debian 9 is available from the 
+# LibreOffice ${OFFICE_VER} for Debian 9 is available from the 
 #    LibreOffice download site:
 #
-# http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/5.4.4/deb/x86_64/LibreOffice_5.4.4_Linux_x86-64_deb.tar.gz
+# http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
 #
-#    HOST: http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/5.4.6/deb/x86_64/
-#    PKG:  LibreOffice_5.4.6_Linux_x86-64_deb.tar.gz
-#    DIR:  LibreOffice_5.4.6.2_Linux_x86-64_deb 
+#    HOST: http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/
+#    PKG:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
+#    DIR:  LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb
 #
 # DIR can be determined at the LibreOffice download site or 
 #     from inspecting the tarfile (tar -t): it occurs between
 #     'libreoffice' and 'DEBS' in the installation directory path
 #
 # =========================================================================
-#
-# The host at http://pkgnginx is a local ngnix server on a private, internal network
-#   which hosts various packages which must be downloaded from a non-repository
-#   during installation.
-#
-# NOTE: these release packages provided by Libre Office contain the complete 
-#       Libre Office release and tend to be fairly large. Therefore, if building 
-#       this image multiple times, the package should be downloaded once and 
-#       accessed localy if it is possible locally, rather than imposing a rather 
-#       large load on the internet server(s).
-#
-#       For one possible solution, refer to the 
-#
-#          EarthWalkSoftware/alpine-pkgngnix 
-#
-#       project
-#
-# =========================================================================
-#
-# If there are problems building the image with the wget command 
-#   in the run script below, perform the following:
-#
-#   replace the following line in the script
-#
-#      && wget -qO- ${OFFICE_URL} | tar xvz -C /usr/local/share/libreoffice \
-#
-#   with the following lines
-#
-#      && wget -q ${OFFICE_URL} -O tar xvf /usr/local/share/libreoffice/${OFFICE_PKG} \
-#      && cd /usr/local/share/libreoffice \
-#      && tar -xvf ${OFFICE_PKG} \
-#
-#   and repeat the build (this will leave behind the .tar.gz file).
-#
-# =========================================================================
-
-#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/5.4.6/deb/x86_64
-ENV OFFICE_HOST=http://pkgnginx
+ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+#ENV OFFICE_HOST=http://pkgnginx
 
 # =========================================================================
 
-ENV OFFICE_PKG=LibreOffice_5.4.6_Linux_x86-64_deb.tar.gz
-ENV OFFICE_DIR=LibreOffice_5.4.6.2_Linux_x86-64_deb
+#ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
+#ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb
 
-ENV OFFICE_URL=${OFFICE_HOST}/${OFFICE_PKG}
+#ENV OFFICE_URL=${OFFICE_HOST}/${OFFICE_PKG}
 
 # =========================================================================
 
 COPY scripts/. /
+
+# =========================================================================
 
 RUN apt-get -y update \
  && apt-get -y upgrade  \
@@ -115,12 +86,14 @@ RUN apt-get -y update \
  && dpkg -i /usr/local/share/libreoffice/${OFFICE_DIR}/DEBS/*.deb \
  && rm -R /usr/local/share/libreoffice/${OFFICE_DIR} \
  && apt-get clean all \
- && PATH=$PATH:/opt/libreoffice5.4/program \
- && chmod +x /libreoffice/*.run
+ && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program
+ && chmod +x /libreoffice/*.run  
 
 # =========================================================================
 
 VOLUME /documents
+
+# =========================================================================
 
 ENTRYPOINT ["/my_init", "--quiet"]
 CMD ["/usr/bin/libreoffice5.4"]

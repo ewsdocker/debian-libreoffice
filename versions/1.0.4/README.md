@@ -2,10 +2,8 @@
 LibreOffice in a Debian container
 ____  
 
-New Version: **1.0.5** (**edge**). _2018-04-15_.  
 New Version: **1.0.4** (**latest**). _2018-04-15_.  
-
-Stable Version: **1.0.4**
+Stable Version: **1.0.0**
 _____________________
 
 **docker pull** will pull the **latest** image by default.  The Docker **latest** tag is based on the GitHub **master** source, which is the development version, and quite possibly **unstable**.  
