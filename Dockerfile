@@ -82,6 +82,7 @@ RUN apt-get -y update \
  && apt-get -y upgrade  \
  && apt-get install -y --no-install-recommends \
             openjdk-8-jre \
+ && chmod -R 775 /libreoffice  \
  && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
  && wget ${OFFICE_URL} \ 
@@ -90,8 +91,7 @@ RUN apt-get -y update \
  && rm -R /usr/local/share/libreoffice/${OFFICE_DIR} \
  && apt-get clean all \
  && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
- && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
- && chmod -R 775 /libreoffice  
+ && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program 
 
 # =========================================================================
 
