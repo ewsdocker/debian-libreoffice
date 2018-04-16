@@ -91,7 +91,7 @@ RUN apt-get -y update \
  && apt-get clean all \
  && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
- && chmod +x /libreoffice/*.run  
+ && chmod -R 775 /libreoffice  
 
 # =========================================================================
 
