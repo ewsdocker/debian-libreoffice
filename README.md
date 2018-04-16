@@ -8,7 +8,9 @@ New Version: **1.0.4** (**latest**). _2018-04-15_.
 Stable Version: **1.0.4**
 _____________________
 
-**docker pull** will pull the **latest** image by default.  The Docker **latest** tag is based on the GitHub **master** source, which is the development version, and quite possibly **unstable**.  
+**docker pull** will pull the **latest** image by default.  This image is the highest tag number that is ready for use, but not yet "stable".
+
+The Docker **edge** tag is based on the GitHub **master** source, which is the development version, and quite possibly **unstable**.  
 
 NOTE: If the _New Version_ version number is not in the **Tags**, the **latest** tag is still under test.  Testing will be complete when the _New Version_ tag exists.
 
