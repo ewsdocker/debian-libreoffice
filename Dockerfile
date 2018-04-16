@@ -26,7 +26,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM earthwalksoftware/debian-base:2.1.1
+FROM earthwalksoftware/debian-base-gui:2.1.1
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
