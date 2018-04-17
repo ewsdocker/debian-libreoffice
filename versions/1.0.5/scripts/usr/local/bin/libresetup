@@ -4,7 +4,7 @@
 #
 #	libresetup
 #	  libresetup for Libre Office 6.0.3
-#		in a Debian 9 (Stretch) docker image.
+#		in a Debian 9 docker image.
 #
 # =========================================================================
 #
@@ -28,23 +28,27 @@
 # =========================================================================
 # =========================================================================
 #
-#   debian-office2.run - a sample start script to the designated folder:
+#   libresetup copies sample start scripts to the designated folder:
 #
-#      Configuration is stored in ${HOME}/.config/libreoffice of the calling user
-#      Documents are stored in /media/docs-2018/document on the docker host
+#       debian-office   -   sample office start script
+#       debian-office2  -   sample office start script with mounted media
 #
-#   The remainder of the options are to connect the created container
-#   to the docker host X11 Server and synchronized to the docker host 
-#   Time and Date, so created/modified files will have a proper timestamp.
+#   start office with
+#
+#     docker run --rm \
+#                --name=office \
+#                -v ${HOME}/bin:/userbin \
+#            libreoffice:latest libresetup
+#
+#docker run --rm --name=office -v ${HOME}/bin:/userbin ewsdocker/debian-libreoffice:6.0.3 libresetup
 #
 # =========================================================================
 
-docker run -e DISPLAY=unix${DISPLAY} \
-           -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
-           -v /etc/localtime:/etc/localtime:ro \
-           -v ${HOME}/.config/libreoffice:/root \
-           -v ${HOME}/documents:/documents \
-           --mount type=bind,source=${HOME}/source,target=/source \
-           --name=office \
-        ewsdocker/debian-libreoffice:latest
+cp -r /libreoffice/*.run /userbin
+lines=$( find . -name "libreoffice-startcenter*" )
+
+echo 
+echo "libreoffice container runner copied to /userbin"
+echo
+
+exit 0

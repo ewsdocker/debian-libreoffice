@@ -2,13 +2,13 @@
 # =========================================================================
 #
 #	Dockerfile
-#	  Dockerfile for Libre Office 6.0.3.2 
+#	  Dockerfile for Libre Office 5.4.6.2 
 #		in a Debian 9 docker image.
 #
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 1.0.6
+# @version 1.0.5
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the Academic Free License version 3.0
 # @package debian-libreoffice
@@ -39,11 +39,11 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.0.3
-ENV OFFICE_REL=6.0
+#ENV OFFICE_VER=6.0.3
+#ENV OFFICE_REL=6.0
 
-#ENV OFFICE_VER=5.4.6
-#ENV OFFICE_REL=5.4
+ENV OFFICE_VER=5.4.6
+ENV OFFICE_REL=5.4
 
 # =========================================================================
 #

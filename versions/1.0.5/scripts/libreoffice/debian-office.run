@@ -2,9 +2,9 @@
 # =========================================================================
 # =========================================================================
 #
-#	libresetup
-#	  libresetup for Libre Office 6.0.3
-#		in a Debian 9 (Stretch) docker image.
+#	debian-office.run
+#	  docker run command for Libre Office 6.0.3
+#		in a Debian 9 docker image.
 #
 # =========================================================================
 #
@@ -13,7 +13,7 @@
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the Academic Free License version 3.0
 # @package debian-libreoffice
-# @subpackage libresetup
+# @subpackage debian-office.run
 #
 # =========================================================================
 #
@@ -28,23 +28,26 @@
 # =========================================================================
 # =========================================================================
 #
-#   debian-office2.run - a sample start script to the designated folder:
+#   debian-office - a sample start script to the designated folder:
 #
-#      Configuration is stored in ${HOME}/.config/libreoffice of the calling user
-#      Documents are stored in /media/docs-2018/document on the docker host
+#   Using this script to start libreoffice:6.0.3, the
+#
+#     - Configuration is stored in ${HOME}/.config/libreoffice of the  
+#          calling user on the docker host, and
+#
+#     - Documents are stored in ${HOME}/Documents on the docker host
 #
 #   The remainder of the options are to connect the created container
-#   to the docker host X11 Server and synchronized to the docker host 
-#   Time and Date, so created/modified files will have a proper timestamp.
+#   to the docker host X11 Server and synchronize the container to the 
+#   docker host Time and Date, to maintain accurate timestamps.
 #
 # =========================================================================
 
-docker run -e DISPLAY=unix${DISPLAY} \
+docker run -v /etc/localtime:/etc/localtime:ro \
+           -e DISPLAY=unix${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
-           -v /etc/localtime:/etc/localtime:ro \
            -v ${HOME}/.config/libreoffice:/root \
-           -v ${HOME}/documents:/documents \
-           --mount type=bind,source=${HOME}/source,target=/source \
+           -v ${HOME}/Documents:/documents \
            --name=office \
-        ewsdocker/debian-libreoffice:latest
+       ewsdocker/debian-libreoffice:latest

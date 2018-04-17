@@ -8,15 +8,15 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 2.1.2
-# @copyright © 2017. EarthWalk Software.
+# @version 1.0.3
+# @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the Academic Free License version 3.0
 # @package debian-libreoffice
 # @subpackage Dockerfile
 #
 # =========================================================================
 #
-#	Copyright © 2017. EarthWalk Software
+#	Copyright © 2017, 2018. EarthWalk Software
 #	Licensed under the Academic Free License, version 3.0.
 #
 #	Refer to the file named License.txt provided with the source,
@@ -92,11 +92,22 @@ ENV DEBIAN_FRONTEND noninteractive
 #
 # =========================================================================
 
+##############################################################################################
+#                                                                                            #
+#                                NO LONGER AVAILABLE                                         #
+#                             Refer to Docker tag 1.0.3                                      #
+#                                For pre-built image                                         #
+#                                                                                            #
+##############################################################################################
 #ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/5.4.4/deb/x86_64
-#ENV OFFICE_HOST=http://172.32.0.2
+
 ENV OFFICE_HOST=http://pkgnginx
 
-# =========================================================================
+##############################################################################################
+#                                                                                            #
+#                                                                                            #
+#                                                                                            #
+##############################################################################################
 
 ENV OFFICE_PKG=LibreOffice_5.4.4_Linux_x86-64_deb.tar.gz
 ENV OFFICE_DIR=LibreOffice_5.4.4.2_Linux_x86-64_deb
