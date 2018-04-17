@@ -4,7 +4,7 @@ ____
 
 ## ewsdocker/debian-libreoffice Wiki  
 
-Please visit our **ewsdocker/debian-libreoffice** Wiki for complete documentation of this docker image.  
+Please visit our [**ewsdocker/debian-libreoffice Wiki**](https://github.com/ewsdocker/debian-libreoffice/wiki) for complete documentation of this docker image.  
 ____  
 
 ### About Docker Versions  
