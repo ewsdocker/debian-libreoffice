@@ -2,11 +2,15 @@
 LibreOffice in a Debian container
 ____  
 
-New Version: **1.0.5** (**edge**). _2018-04-16_.  
-New Version: **1.0.4** (**latest**). _2018-04-15_.  
+## ewsdocker/debian-libreoffice Wiki  
 
-Stable Version: **1.0.4**
-_____________________
+Please visit our **ewsdocker/debian-libreoffice** Wiki for complete documentation of this docker image.  
+____  
+
+### About Docker Versions  
+
+Find out all that you need to know about the docker Tags, and the version of LibreOffice represented, at [Docker Tags](https://github.com/ewsdocker/debian-libreoffice/wiki/DockerTags).  
+_____________________  
 
 **docker pull** will pull the **latest** image by default.  This image is the highest tag number that is ready for use, but not yet "stable".
 
@@ -18,4 +22,3 @@ Other Docker versions (or tags) can be selected on the Docker [Tags](https://hub
 
 An explanation of the [Docker Tags](https://github.com/ewsdocker/debian-libreoffice/wiki/DockerTags) is available on the [ewsdocker/debian-libreoffice Wiki](https://github.com/ewsdocker/debian-libreoffice/wiki).
 ____
-
