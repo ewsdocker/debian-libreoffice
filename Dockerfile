@@ -99,5 +99,5 @@ VOLUME /documents
 
 # =========================================================================
 
-ENTRYPOINT ["/my_init"]
+ENTRYPOINT ["/my_init", "--quiet"]
 CMD ["/usr/bin/libreoffice"]
