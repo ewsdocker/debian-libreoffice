@@ -26,7 +26,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM earthwalksoftware/debian-base-gui:2.1.1
+FROM ewsdocker/debian-base-gui:3.0.3
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -88,7 +88,7 @@ RUN apt-get -y update \
  && wget ${OFFICE_URL} \ 
  && tar fxvz ${OFFICE_PKG} \
  && dpkg -i /usr/local/share/libreoffice/${OFFICE_DIR}/DEBS/*.deb \
- && rm -R /usr/local/share/libreoffice/${OFFICE_DIR} \
+ && rm -R /usr/local/share/libreoffice \
  && apt-get clean all \
  && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program 
@@ -99,5 +99,5 @@ VOLUME /documents
 
 # =========================================================================
 
-ENTRYPOINT ["/my_init", "--quiet"]
+ENTRYPOINT ["/my_init"]
 CMD ["/usr/bin/libreoffice"]
