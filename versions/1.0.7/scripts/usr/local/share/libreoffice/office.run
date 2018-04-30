@@ -1,0 +1,64 @@
+#!/bin/bash
+# =========================================================================
+# =========================================================================
+#
+#	debian-office.run
+#	  docker run command for Libre Office 6.0.3
+#		in a Debian 9 docker image.
+#
+# =========================================================================
+#
+# @author Jay Wheeler.
+# @version 0.0.2
+# @copyright © 2017, 2018. EarthWalk Software.
+# @license Licensed under the GNU General Public License, GPL-3.0-or-later.
+# @package debian-libreoffice
+# @subpackage debian-office.run
+#
+# =========================================================================
+#
+#	Copyright © 2017, 2018. EarthWalk Software
+#	Licensed under the GNU General Public License, GPL-3.0-or-later.
+#
+#   This file is part of ewsdocker/debian-libreoffice.
+#
+#   ewsdocker/debian-libreoffice is free software: you can redistribute 
+#   it and/or modify it under the terms of the GNU General Public License 
+#   as published by the Free Software Foundation, either version 3 of the 
+#   License, or (at your option) any later version.
+#
+#   ewsdocker/debian-libreoffice is distributed in the hope that it will 
+#   be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+#   of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with ewsdocker/debian-libreoffice.  If not, see 
+#   <http://www.gnu.org/licenses/>.
+#
+# =========================================================================
+# =========================================================================
+#
+#   debian-office - a sample start script to the designated folder:
+#
+#   Using this script to start libreoffice:6.0.3, the
+#
+#     - Configuration is stored in ${HOME}/.config/libreoffice of the  
+#          calling user on the docker host, and
+#
+#     - Documents are stored in ${HOME}/Documents on the docker host
+#
+#   The remainder of the options are to connect the created container
+#   to the docker host X11 Server and synchronize the container to the 
+#   docker host Time and Date, to maintain accurate timestamps.
+#
+# =========================================================================
+
+docker run -v /etc/localtime:/etc/localtime:ro \
+           -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v ${HOME}/.config/docker/libreoffice:/root \
+           -v ${HOME}/Documents:/documents \
+           --name=office \
+       ewsdocker/debian-libreoffice:latest
