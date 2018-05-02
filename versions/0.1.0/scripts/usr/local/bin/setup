@@ -1,0 +1,65 @@
+#!/bin/bash
+# =========================================================================
+# =========================================================================
+#
+#	libresetup
+#	  libresetup for Libre Office in a Debian docker image.
+#
+# =========================================================================
+#
+# @author Jay Wheeler.
+# @version 0.0.2
+# @copyright © 2017, 2018. EarthWalk Software.
+# @license Licensed under the GNU General Public License, GPL-3.0-or-later.
+# @package debian-libreoffice
+# @subpackage setup
+#
+# =========================================================================
+#
+#	Copyright © 2017, 2018. EarthWalk Software
+#	Licensed under the GNU General Public License, GPL-3.0-or-later.
+#
+#   This file is part of ewsdocker/debian-libreoffice.
+#
+#   ewsdocker/debian-libreoffice is free software: you can redistribute 
+#   it and/or modify it under the terms of the GNU General Public License 
+#   as published by the Free Software Foundation, either version 3 of the 
+#   License, or (at your option) any later version.
+#
+#   ewsdocker/debian-libreoffice is distributed in the hope that it will 
+#   be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+#   of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with ewsdocker/debian-libreoffice.  If not, see 
+#   <http://www.gnu.org/licenses/>.
+#
+# =========================================================================
+# =========================================================================
+#
+#   libresetup copies sample start scripts to the designated folder:
+#
+#      office   -   sample office start script
+#      office2  -   sample office start script with mounted media
+#
+#   start office with
+#
+#     docker run --rm \
+#                --name=office \
+#                -v ${HOME}/bin:/userbin \
+#            libreoffice:latest setup
+#
+#docker run --rm --name=office -v ${HOME}/bin:/userbin ewsdocker/debian-libreoffice setup
+#
+# =========================================================================
+
+cp -r /usr/local/share/libreoffice/*.run /userbin
+
+lines=$( find . -name "libreoffice-startcenter*" )
+
+echo 
+echo "libreoffice container runner copied to /userbin"
+echo
+
+exit 0
