@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 1.1.0
+# @version 0.1.0
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -36,7 +36,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-base-gui:3.0.5
+FROM ewsdocker/debian-openjre:0.1.0
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -49,11 +49,8 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.0.3 
-ENV OFFICE_REL=6.0
-
-#ENV OFFICE_VER=5.4.6 
-#ENV OFFICE_REL=5.4
+ENV OFFICE_VER=5.4.6 
+ENV OFFICE_REL=5.4
 
 # =========================================================================
 #
@@ -72,30 +69,29 @@ ENV OFFICE_REL=6.0
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb 
 ENV OFFICE_URL=${OFFICE_HOST}/${OFFICE_PKG} 
-ENV LMSBUILD_VERSION="1.1.0" 
+
+ENV LMSBUILD_VERSION="0.1.0" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_DOCKER="ewsdocker/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
-ENV LMSBUILD_PACKAGE="debian-base-gui:3.0.5, LibreOffice v ${OFFICE_VER}"
+ENV LMSBUILD_PACKAGE="debian-openjre:0.1.0, LibreOffice v ${OFFICE_VER}"
 
 # =========================================================================
 
 RUN apt-get -y update \
  && apt-get -y upgrade  \
- && apt-get install -y --no-install-recommends \
-            openjdk-8-jre \
+ && apt-get clean all \
  && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
  && wget ${OFFICE_URL} \ 
  && tar fxvz ${OFFICE_PKG} \
  && dpkg -i /usr/local/share/libreoffice/${OFFICE_DIR}/DEBS/*.deb \
  && rm -R /usr/local/share/libreoffice \
- && apt-get clean all \
  && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
  && printf "${LMSBUILD_DOCKER} (${LMSBUILD_PACKAGE}), %s @ %s\n" `date '+%Y-%m-%d'` `date '+%H:%M:%S'` >> /etc/ewsdocker-builds.txt 

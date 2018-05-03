@@ -52,9 +52,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV OFFICE_VER=6.0.3 
 ENV OFFICE_REL=6.0
 
-#ENV OFFICE_VER=5.4.6 
-#ENV OFFICE_REL=5.4
-
 # =========================================================================
 #
 # LibreOffice ${OFFICE_VER} for Debian 9 is available from the 
@@ -72,8 +69,8 @@ ENV OFFICE_REL=6.0
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb 

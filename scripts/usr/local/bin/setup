@@ -55,6 +55,7 @@
 # =========================================================================
 
 cp -r /usr/local/share/libreoffice/*.run /userbin
+cp -r /usr/share/icons/hicolor/scalable/apps /root/icons
 
 lines=$( find . -name "libreoffice-startcenter*" )
 
