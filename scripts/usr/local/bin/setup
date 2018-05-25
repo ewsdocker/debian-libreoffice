@@ -2,8 +2,8 @@
 # =========================================================================
 # =========================================================================
 #
-#	libresetup
-#	  libresetup for Libre Office in a Debian docker image.
+#	setup
+#	  Setup for Libre Office in a Debian docker image.
 #
 # =========================================================================
 #
@@ -38,29 +38,37 @@
 # =========================================================================
 # =========================================================================
 #
-#   libresetup copies sample start scripts to the designated folder:
-#
-#      office   -   sample office start script
-#      office2  -   sample office start script with mounted media
-#
-#   start office with
-#
 #     docker run --rm \
-#                --name=office \
+#                --name=office-setup \
+#                -v ${HOME}/.config/docker/libreoffice:/root \
 #                -v ${HOME}/bin:/userbin \
 #            libreoffice:latest setup
 #
-#docker run --rm --name=office -v ${HOME}/bin:/userbin ewsdocker/debian-libreoffice setup
+# docker run --rm --name=office-setup -v ${HOME}/.config/docker/libreoffice:/root -v ${HOME}/bin:/userbin ewsdocker/debian-libreoffice setup
 #
 # =========================================================================
 
-cp -r /usr/local/share/libreoffice/*.run /userbin
-cp -r /usr/share/icons/hicolor/scalable/apps /root/icons
+. /usr/local/lib/lms/lmsVersion.bash
 
-lines=$( find . -name "libreoffice-startcenter*" )
+# =========================================================================
 
 echo 
-echo "libreoffice container runner copied to /userbin"
+echo **********************************************************************
+echo
+
+lmsVersion
+
+echo 
+echo **********************************************************************
+echo
+
+cp -r /usr/local/share/libreoffice/*.run /userbin
+cp -r /usr/local/share/libreoffice/*.desktop /root
+
+cp -r /usr/share/icons/hicolor/scalable/apps /root/icons
+
+echo 
+echo "ewsdocker/debian-libreoffice container setup complete."
 echo
 
 exit 0

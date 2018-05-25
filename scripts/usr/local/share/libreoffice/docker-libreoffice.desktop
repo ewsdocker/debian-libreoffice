@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=/home/jay/bin/docker-office-start.run
+Icon=/home/jay/.config/docker/libreoffice/icons/libreoffice6.0-writer.svg
+Type=Application
+Terminal=false
+GenericName=LibreOffice
+Name=LibreOffice-6.0
+StartupNotify=false
+Categories=Office
