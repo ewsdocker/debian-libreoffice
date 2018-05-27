@@ -1,0 +1,298 @@
+#!/bin/bash
+# =========================================================================
+# =========================================================================
+#
+#	addLanguage
+#	  Add language/help packs.
+#
+# =========================================================================
+#
+# @author Jay Wheeler.
+# @version 0.0.1
+# @copyright © 2018. EarthWalk Software.
+# @license Licensed under the GNU General Public License, GPL-3.0-or-later.
+# @package ewsdocker/debian-libreoffice
+# @subpackage addLanguage
+#
+# =========================================================================
+#
+#	Copyright © 2018. EarthWalk Software
+#	Licensed under the GNU General Public License, GPL-3.0-or-later.
+#
+#   This file is part of ewsdocker/debian-libreoffice.
+#
+#   ewsdocker/debian-libreoffice is free software: you can redistribute 
+#   it and/or modify it under the terms of the GNU General Public License 
+#   as published by the Free Software Foundation, either version 3 of the 
+#   License, or (at your option) any later version.
+#
+#   ewsdocker/debian-libreoffice is distributed in the hope that it will 
+#   be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+#   of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with ewsdocker/debian-libreoffice.  If not, see 
+#   <http://www.gnu.org/licenses/>.
+#
+# =========================================================================
+
+OFFICE_VER=6.0.4
+OFFICE_LANG="en-US"
+
+# *************************************************************************
+
+. /usr/local/lib/lms/lmsConCli.bash
+. /usr/local/lib/lms/lmsDisplay.bash
+
+# *************************************************************************
+#
+#	errExit
+#
+#      Output error message and exit with error code.
+#
+#   parameters:
+#      message = message to output
+#      errorc = error code
+#
+#   returns:
+#     none - program is exited.
+#
+# *************************************************************************
+function errExit()
+{
+    lmsDisplay "Error: ${1} (${2})"
+    exit ${2}
+}
+
+# *************************************************************************
+#
+#	getPack
+#
+#      Download the specified package URL to the current folder.
+#
+#   parameters:
+#      url = location of the language/help package on the internet
+#
+#   returns:
+#     0 = no error
+#     1 = error
+#
+# *************************************************************************
+function getPack()
+{
+    wget "${1}"
+    [[ $? -eq 0 ]] || return 1
+
+    return 0
+}
+
+# *************************************************************************
+#
+#	unTar
+#
+#      Untar the specified tarball in the current folder.
+#
+#   parameters:
+#      tarball = name of the tarball to untar in the current folder
+#
+#   returns:
+#     0 = no error
+#     2 = error
+#
+# *************************************************************************
+function unTar()
+{
+    tar fxvz "${1}"
+    [[ $? -eq 0 ]] || return 2
+
+    return 0
+}
+
+# *************************************************************************
+#
+#	aptDpkg
+#
+#      Install all deb files in the specified folder.
+#
+#   parameters:
+#      dpkgSource = path to the directory containing .deb files to install
+#
+#   returns:
+#     0 = no error
+#     3 = error
+#
+# *************************************************************************
+function aptDpkg()
+{
+    local pkgDir="${1}"
+
+	cd "/usr/local/share/libreoffice/${pkgDir}/DEBS"
+
+    dpkg -i *.deb
+    [[ $? -eq 0 ]] || return 3
+
+	cd "/usr/local/share/libreoffice"
+
+    return 0
+}
+
+# *************************************************************************
+#
+#	langInstall
+#
+#      Download and install the specified Language/Help Pack.
+#
+#   parameters:
+#      lPack = location of the language/help package on the internet
+#      lTar = the name of the language/help tarball
+#      lDir = the name of the language/help directory
+#
+#   returns:
+#     0 = no error
+#     1 = error
+#
+# *************************************************************************
+function langInstall()
+{
+    getPack "${1}"
+    [[ $? -eq 0 ]] || errExit "getPack failed" $?
+
+    unTar "${2}"
+    [[ $? -eq 0 ]] || errExit "unTar failed" $?
+
+    aptDpkg "${3}"
+    [[ $? -eq 0 ]] || errExit "aptDpkg failed" $?
+
+    return 0
+}
+
+# *************************************************************************
+#
+#	installLanguage
+#
+#      Install the specified Language/Help Pack.
+#
+#   parameters:
+#      lPack = location of the language/help package on the internet
+#      lTar = the name of the language/help tarball
+#      lDir = the name of the language/help directory
+#
+#   returns:
+#     0 = no error
+#     1 = error
+#
+# *************************************************************************
+function installLanguage()
+{
+    lmsDisplay "Installing Language Pack for language \"${OFFICE_LANG}\" ... " "-n"
+
+    LPACK="http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
+    LTAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
+	LDIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_langpack_${OFFICE_LANG}"
+
+#    [[ "${OFFICE_LANG}" -ne "en-US" ]] &&
+#     {
+        langInstall "${LPACK}" "${LTAR}" "${LDIR}"
+        [[ $? -eq 0 ]] || errExit "langInstall failed @ " $?
+#     }
+
+    lmsDisplay "complete."
+
+    # *********************************************************************
+
+    lmsDisplay "Installing Help Pack for language \"${OFFICE_LANG}\" ... " "-n"
+
+    HPACK="http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
+    HTAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
+    HDIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_helppack_${OFFICE_LANG}"
+
+    langInstall "${HPACK}" "${HTAR}" "${HDIR}"
+    [[ $? -eq 0 ]] || errExit "langInstall failed @ " $?
+
+    lmsDisplay "complete."
+
+    # *********************************************************************
+
+    lmsDisplay ""
+}
+
+# *************************************************************************
+#
+#	parseLang
+#
+#      Parse the parameters.
+#
+#   parameters:
+#      lPack = location of the language/help package on the internet
+#      lTar = the name of the language/help tarball
+#      lDir = the name of the language/help directory
+#
+#   returns:
+#     0 = no error
+#     1 = error
+#
+# *************************************************************************
+function parseLang()
+{
+    lmsCliParse
+    [[ $? -eq 0 ]] ||
+     {
+        [[ $? -eq 1 ]] && lmsDisplay "Missing required parameter" || lmsDisplay "Unknown parameter"
+        return 1
+     }
+
+	[[ ! " ${!cliParam[@]} " =~ "lang" ]] &&
+	 {
+	    lmsDisplay "Missing required parameter: lang"
+	    return 2
+	 }
+    
+	for pName in "${cliKey[@]}"
+	do
+	    case ${pName} in
+
+	        "lang")
+
+	            OFFICE_LANG=${cliParam["${pName}"]}
+
+	            installLanguage
+	            [[ $? -eq 0 ]] || lmsDisplay "Unable to install language: ${pName}"
+
+	            break
+
+	            ;;
+
+	        "quiet")
+	            lmscli_optQuiet=${cliParam["${pName}"]}
+
+	            ;;
+
+	        "vers")
+	        	OFFICE_VERS=${cliParam["${pName}"]}
+
+	            ;;
+
+	        *)
+	            lmsDisplay "Ignoring unknown parameter \"${pName}\""
+
+	            ;;
+
+        esac
+	done
+
+	return 0
+}
+
+# *************************************************************************
+#
+#	Start program here
+#
+# *************************************************************************
+
+cd /usr/local/share/libreoffice
+
+parseLang
+[[ $? -eq 0 ]] || errExit "parseInput failed @ " $?
+
+exit 0

@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 1.1.2
+# @version 1.1.3
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -52,6 +52,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV OFFICE_VER=6.0.4 
 ENV OFFICE_REL=6.0
 
+ENV OFFICE_LANG="en-US"
+
 # =========================================================================
 #
 # LibreOffice ${OFFICE_VER} for Debian 9 is available from the 
@@ -74,25 +76,32 @@ ENV OFFICE_REL=6.0
 # http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/6.0.4/deb/x86_64/LibreOffice_6.0.4_Linux_x86-64_deb_helppack_en-US.tar.gz
 #
 #    HLP_TAR:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
-#    HLP_PKG:  libobasis${OFFICE_REL}-en-us-help_${OFFICE_VER}.2-2_amd64.deb
 #    HLP_DIR:  LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_helppack_en-US
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb 
 ENV OFFICE_URL=${OFFICE_HOST}/${OFFICE_PKG} 
 
-ENV HLP_PKG=libobasis${OFFICE_REL}-en-us-help_${OFFICE_VER}.2-2_amd64.deb
+# =========================================================================
 
-ENV HLP_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz"
-ENV HLP_DIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_helppack_en-US"
+ENV HLP_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
+ENV HLP_DIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_helppack_${OFFICE_LANG}"
 ENV HLP_URL="${OFFICE_HOST}/${HLP_TAR}" 
 
-ENV LMSBUILD_VERSION="1.1.2" 
+# =========================================================================
+
+ENV LANG_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
+ENV LANG_DIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_langpack_${OFFICE_LANG}"
+ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}" 
+
+# =========================================================================
+
+ENV LMSBUILD_VERSION="1.1.3" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_DOCKER="ewsdocker/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
 ENV LMSBUILD_PACKAGE="debian-openjre:2.1.0, LibreOffice v ${OFFICE_VER}"
@@ -118,6 +127,7 @@ RUN apt-get -y update \
 # =========================================================================
 
 COPY scripts/. /
+RUN chmod +x /usr/local/bin/*
 
 # =========================================================================
 
