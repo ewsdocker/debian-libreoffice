@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 1.1.3
+# @version 1.1.4
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -36,7 +36,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:0.1.0
+FROM ewsdocker/debian-openjre:0.1.1
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -101,10 +101,10 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="1.1.3" 
+ENV LMSBUILD_VERSION="1.1.4" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_DOCKER="ewsdocker/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
-ENV LMSBUILD_PACKAGE="debian-openjre:2.1.0, LibreOffice v ${OFFICE_VER}"
+ENV LMSBUILD_PACKAGE="debian-openjre:0.1.1, LibreOffice v ${OFFICE_VER}"
 
 # =========================================================================
 
