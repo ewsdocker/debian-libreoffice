@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 1.1.4
+# @version 1.1.5
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -36,7 +36,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:0.1.1
+FROM ewsdocker/debian-openjre:0.1.3
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -80,8 +80,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb 
@@ -101,10 +101,10 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="1.1.4" 
+ENV LMSBUILD_VERSION="1.1.5" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_DOCKER="ewsdocker/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
-ENV LMSBUILD_PACKAGE="debian-openjre:0.1.1, LibreOffice v ${OFFICE_VER}"
+ENV LMSBUILD_PACKAGE="debian-openjre:0.1.3, LibreOffice v ${OFFICE_VER}"
 
 # =========================================================================
 
@@ -127,7 +127,11 @@ RUN apt-get -y update \
 # =========================================================================
 
 COPY scripts/. /
-RUN chmod +x /usr/local/bin/*
+
+RUN ln -s /usr/bin/lms/addLanguage /usr/bin/addLanguage \
+ && chmod +x /usr/bin/lms/* \
+ && chmod 775 /usr/local/bin/debian-libreoffice* \
+ && chmod 600 /usr/local/share/applications/debian-libreoffice.desktop
 
 # =========================================================================
 

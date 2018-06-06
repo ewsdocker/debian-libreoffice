@@ -2,17 +2,18 @@
 # =========================================================================
 # =========================================================================
 #
-#	libresetup
-#	  libresetup for Libre Office in a Debian docker image.
+#	debian-libreoffice.run
+#	  docker run command for Libre Office
+#		in a Debian 9 docker image.
 #
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 0.0.2
+# @version 0.0.3
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
-# @subpackage setup
+# @subpackage debian-libreoffice.run
 #
 # =========================================================================
 #
@@ -38,28 +39,26 @@
 # =========================================================================
 # =========================================================================
 #
-#   libresetup copies sample start scripts to the designated folder:
+#   debian-libreoffice - a sample start script to the designated folder:
 #
-#      office   -   sample office start script
-#      office2  -   sample office start script with mounted media
+#   Using this script to start libreoffice, the
 #
-#   start office with
+#     - Configuration is stored in ${HOME}/.config/libreoffice of the  
+#          calling user on the docker host, and
 #
-#     docker run --rm \
-#                --name=office \
-#                -v ${HOME}/bin:/userbin \
-#            libreoffice:latest setup
+#     - Documents are stored in ${HOME}/Documents on the docker host
 #
-#docker run --rm --name=office -v ${HOME}/bin:/userbin ewsdocker/debian-libreoffice setup
+#   The remainder of the options are to connect the created container
+#   to the docker host X11 Server and synchronize the container to the 
+#   docker host Time and Date, to maintain accurate timestamps.
 #
 # =========================================================================
 
-cp -r /usr/local/share/libreoffice/*.run /userbin
-
-lines=$( find . -name "libreoffice-startcenter*" )
-
-echo 
-echo "libreoffice container runner copied to /userbin"
-echo
-
-exit 0
+docker run -v /etc/localtime:/etc/localtime:ro \
+           -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v ${HOME}/.config/docker/libreoffice:/root \
+           -v ${HOME}/Documents:/documents \
+           --name=debian-libreoffice-1.1.5 \
+       ewsdocker/debian-libreoffice:1.1.5

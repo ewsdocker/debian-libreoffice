@@ -42,8 +42,8 @@ OFFICE_LANG="en-US"
 
 # *************************************************************************
 
-. /usr/local/lib/lms/lmsConCli.bash
-. /usr/local/lib/lms/lmsDisplay.bash
+. /usr/local/lib/lms/lmsconCli-0.0.2.bash
+. /usr/local/lib/lms/lmsconDisplay-0.0.1.bash
 
 # *************************************************************************
 #
@@ -61,7 +61,7 @@ OFFICE_LANG="en-US"
 # *************************************************************************
 function errExit()
 {
-    lmsDisplay "Error: ${1} (${2})"
+    lmsconDisplay "Error: ${1} (${2})"
     exit ${2}
 }
 
@@ -185,7 +185,7 @@ function langInstall()
 # *************************************************************************
 function installLanguage()
 {
-    lmsDisplay "Installing Language Pack for language \"${OFFICE_LANG}\" ... " "-n"
+    lmsconDisplay "Installing Language Pack for language \"${OFFICE_LANG}\" ... " "-n"
 
     LPACK="http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
     LTAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
@@ -197,11 +197,11 @@ function installLanguage()
         [[ $? -eq 0 ]] || errExit "langInstall failed @ " $?
 #     }
 
-    lmsDisplay "complete."
+    lmsconDisplay "complete."
 
     # *********************************************************************
 
-    lmsDisplay "Installing Help Pack for language \"${OFFICE_LANG}\" ... " "-n"
+    lmsconDisplay "Installing Help Pack for language \"${OFFICE_LANG}\" ... " "-n"
 
     HPACK="http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
     HTAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
@@ -210,11 +210,11 @@ function installLanguage()
     langInstall "${HPACK}" "${HTAR}" "${HDIR}"
     [[ $? -eq 0 ]] || errExit "langInstall failed @ " $?
 
-    lmsDisplay "complete."
+    lmsconDisplay "complete."
 
     # *********************************************************************
 
-    lmsDisplay ""
+    lmsconDisplay ""
 }
 
 # *************************************************************************
@@ -238,13 +238,13 @@ function parseLang()
     lmsCliParse
     [[ $? -eq 0 ]] ||
      {
-        [[ $? -eq 1 ]] && lmsDisplay "Missing required parameter" || lmsDisplay "Unknown parameter"
+        [[ $? -eq 1 ]] && lmsconDisplay "Missing required parameter" || lmsconDisplay "Unknown parameter"
         return 1
      }
 
 	[[ ! " ${!cliParam[@]} " =~ "lang" ]] &&
 	 {
-	    lmsDisplay "Missing required parameter: lang"
+	    lmsconDisplay "Missing required parameter: lang"
 	    return 2
 	 }
     
@@ -257,7 +257,7 @@ function parseLang()
 	            OFFICE_LANG=${cliParam["${pName}"]}
 
 	            installLanguage
-	            [[ $? -eq 0 ]] || lmsDisplay "Unable to install language: ${pName}"
+	            [[ $? -eq 0 ]] || lmsconDisplay "Unable to install language: ${pName}"
 
 	            break
 
@@ -274,7 +274,7 @@ function parseLang()
 	            ;;
 
 	        *)
-	            lmsDisplay "Ignoring unknown parameter \"${pName}\""
+	            lmsconDisplay "Ignoring unknown parameter \"${pName}\""
 
 	            ;;
 
