@@ -4,7 +4,7 @@ ____
 
 ## NOTE
 
-**ewsdocker/debian-libreoffice** is designed to be used on a Linux system configured to support **Docker** _user namespace_s.  Refer to [ewsdocker Containers and Docker User Namespaces](https://github.com/ewsdocker/ewsdocker.github.io/wiki/UserNS-Overview) for an overview and additional information.  
+**ewsdocker/debian-libreoffice** is designed to be used on a Linux system configured to support **Docker** _user namespaces_.  Refer to [ewsdocker Containers and Docker User Namespaces](https://github.com/ewsdocker/ewsdocker.github.io/wiki/UserNS-Overview) for an overview and additional information.  
 
 ____  
 
