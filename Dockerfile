@@ -134,7 +134,7 @@ COPY scripts/. /
 RUN ln -s /usr/bin/lms/addLanguage /usr/bin/addLanguage \
  && chmod +x /usr/bin/lms/* \
  && chmod 775 /usr/local/bin/debian-libreoffice* \
- && chmod 600 /usr/local/share/applications/debian-libreoffice.desktop
+ && chmod 600 /usr/local/share/applications/debian-libreoffice-${LMSBUILD_VERSION}.desktop
 
 # =========================================================================
 
