@@ -63,6 +63,41 @@ Refer to [Mapping docker host resources to the docker container](https://github.
 
 ____  
 
+**Bleeding-edge Testing**  
+
+The _bleeding-edge_ development tag **edge** is the next **Docker** tag release.  This means that, during its lifetime, the **edge** source will undergo many modifications before it becomes useful.  
+
+For the _very brave_, if an _edge_ tag is available, the following  instructions will download, rename and install the _edge_ version.  
+
+Good luck.  Please remember that just because it is named **9.5.1** does **not** mean that it is no longer bleeding-**edge**. Don't expect it to work.
+
+____  
+
+**ewsdocker/debian-libreoffice:edge**  
+
+**edge** is the **Docker** tag for the **GitHub** development version, and future **Docker** release tag, **9.5.1**.
+
+    docker pull ewsdocker/debian-libreoffice:edge
+    docker tag ewsdocker/debian-libreoffice:edge ewsdocker/debian-libreoffice:9.5.1
+    docker run --rm \
+               -v ${HOME}/bin:/userbin \
+               -v ${HOME}/.local:/usrlocal \
+               -e LMS_BASE="${HOME}/.local" \
+               -v ${HOME}/.config/docker:/conf \
+               -v ${HOME}/.config/docker/debian-libreoffice-9.5.1:/root \
+               --name=debian-libreoffice-9.5.1 \
+           ewsdocker/debian-libreoffice:9.5.1 lms-setup  
+
+optional step (clean up the **docker images**):
+
+    docker rmi ewsdocker/debian-libreoffice:edge  
+
+To create and run the container, run **LibreOffice 9.5.1** from the _Office_ category of any desktop menu, or the following should work from the command-line:
+
+    ~/.local/bin/debian-libreoffice:9.5.1  
+
+____  
+
 **Persistence**  
 In order to persist the Eclipse application state, a location on the docker _host_ must be provided to store the necessary information.  This can be accomplished with the following volume option in the run command:
 
