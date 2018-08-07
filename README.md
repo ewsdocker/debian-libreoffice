@@ -98,27 +98,20 @@ To create and run the container, run **LibreOffice 9.5.1** from the _Office_ cat
 
 ____  
 
-**Persistence**  
-In order to persist the Eclipse application state, a location on the docker _host_ must be provided to store the necessary information.  This can be accomplished with the following volume option in the run command:
+**About the size of the image**  
 
-    -v ${HOME}/.config/docker/debian-libreoffice-"version":/root  
+The main design specifications of the **ewsdocker** desktop application images are:  
 
-Since the information is stored in the docker _container_ **/root** directory, this statement maps the user's **~/.config/docker/debian-libreoffice-"version"** docker _host_ directory to the **/root** directory in the docker _container_.  
-____  
-**Timestamps**  
-It is important to keep the time and date on docker _host_ files that have been created and/or modified by the docker _containter_ synchronized with the docker _host_'s settings. This can be accomplished as follows:
+  - Provide the same desktop experience as the user would have on a full application installation on a host desktop (including desktop menu interface, audio, video, multimedia, ...);  
+  - Install the latest release directly from the software vendor's repository, or a certified mirror, reducing dependencies on host operating system implementations of the application;  
+  - Leverage **Docker** container capabilities to  
+   + provide isolation of the **Docker** container applications from the **Docker** host;  
+   + provide persistence of application settings between **docker run** commands, and between future releases, allowing fast container deletion and re-creation; and  
+   + quickly perform container replications, container updates, and recovery from software malfunction/corruption.  
 
-    -v /etc/localtime:/etc/localtime:ro  
+Most of the **ewsdocker** desktop application images are based on the latest **Debian** docker image, since fewer problems have been encountered when implementing the desktop applications on that platform.  
 
-____  
-**About the X11 Server / GUI Stack**  
-The **ewsdocker/debian-libreoffice** image is built on the [ewsdocker/debian-openjre](https://github.com/ewsdocker/debian-openjre/wiki) docker image, which is built on the [ewsdocker/debian-base-gui](https://github.com/ewsdocker/debian-base-gui/wiki) docker image. These two docker images provide the **X11-Server** stack and several **GUI** system elements.  The **X11-Server** stack is configured in the _docker run_ command as follows:
-
-    docker run -e DISPLAY=unix${DISPLAY} \
-               -v /tmp/.X11-unix:/tmp/.X11-unix \
-               -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
-
-Since these options are _the same for all gui containers_, they should probably be the first options in the docker run command.  
+Obviously, these **Docker** images tend to be rather large compared to most **Docker** images. It may take a bit longer to download, but the convenience of having the application in a **docker image** is worth the small, (usually) one time investment in download time.  
 
 ____  
 
