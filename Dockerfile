@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.2
+# @version 9.5.3
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -101,7 +101,7 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.2" 
+ENV LMSBUILD_VERSION="9.5.3" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
