@@ -64,7 +64,7 @@ ENV OFFICE_LANG="en-US"
 #    HOST: http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/
 #
 #    PKG:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
-#    DIR:  LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb
+#    DIR:  LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb
 #
 # DIR can be determined at the LibreOffice download site or 
 #     from inspecting the tarfile (tar -t): it occurs between
@@ -76,7 +76,7 @@ ENV OFFICE_LANG="en-US"
 # http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/6.0.6/deb/x86_64/LibreOffice_6.0.6_Linux_x86-64_deb_helppack_en-US.tar.gz
 #
 #    HLP_TAR:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
-#    HLP_DIR:  LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_helppack_en-US
+#    HLP_DIR:  LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb_helppack_en-US
 #
 # =========================================================================
 
@@ -84,19 +84,19 @@ ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFI
 #ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
-ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb 
+ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb 
 ENV OFFICE_URL=${OFFICE_HOST}/${OFFICE_PKG} 
 
 # =========================================================================
 
 ENV HLP_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
-ENV HLP_DIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_helppack_${OFFICE_LANG}"
+ENV HLP_DIR="LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb_helppack_${OFFICE_LANG}"
 ENV HLP_URL="${OFFICE_HOST}/${HLP_TAR}" 
 
 # =========================================================================
 
 ENV LANG_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
-ENV LANG_DIR="LibreOffice_${OFFICE_VER}.2_Linux_x86-64_deb_langpack_${OFFICE_LANG}"
+ENV LANG_DIR="LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb_langpack_${OFFICE_LANG}"
 ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}" 
 
 # =========================================================================
