@@ -49,7 +49,7 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.0.6 
+ENV OFFICE_VER=6.1.0 
 ENV OFFICE_REL=6.0
 
 ENV OFFICE_LANG="en-US"
