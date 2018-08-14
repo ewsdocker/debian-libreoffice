@@ -50,7 +50,7 @@ ENV DEBIAN_FRONTEND noninteractive
 #
 # =========================================================================
 ENV OFFICE_VER=6.1.0 
-ENV OFFICE_REL=6.0
+ENV OFFICE_REL=6.1
 
 ENV OFFICE_LANG="en-US"
 

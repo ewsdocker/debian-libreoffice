@@ -94,7 +94,7 @@ optional step (clean up the **docker images**):
 
 To create and run the container, run **LibreOffice 9.5.3** from the _Office_ category of any desktop menu, or the following should work from the command-line:
 
-    ~/.local/bin/debian-libreoffice:9.5.3  
+    ~/.local/bin/debian-libreoffice-9.5.3  
 
 ____  
 
