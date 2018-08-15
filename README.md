@@ -1,6 +1,6 @@
 ## ewsdocker/debian-libreoffice  
 
-**LibreOffice (complete) in a Debian-based Docker image.**  
+**LibreOffice 6.1.0 (complete) in a Debian-based Docker image.**  
 
 ____  
 

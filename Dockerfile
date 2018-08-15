@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.3
+# @version 9.5.4
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -52,6 +52,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV OFFICE_VER=6.1.0 
 ENV OFFICE_REL=6.1
 
+ENV OFFICE_LANG_VER=3
 ENV OFFICE_LANG="en-US"
 
 # =========================================================================
@@ -64,7 +65,7 @@ ENV OFFICE_LANG="en-US"
 #    HOST: http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/
 #
 #    PKG:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
-#    DIR:  LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb
+#    DIR:  LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb
 #
 # DIR can be determined at the LibreOffice download site or 
 #     from inspecting the tarfile (tar -t): it occurs between
@@ -73,10 +74,10 @@ ENV OFFICE_LANG="en-US"
 # =========================================================================
 #
 #     help pack for US-en:
-# http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/6.0.6/deb/x86_64/LibreOffice_6.0.6_Linux_x86-64_deb_helppack_en-US.tar.gz
+# http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
 #
 #    HLP_TAR:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
-#    HLP_DIR:  LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb_helppack_en-US
+#    HLP_DIR:  LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb_helppack_en-US
 #
 # =========================================================================
 
@@ -84,24 +85,24 @@ ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFI
 #ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
-ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb 
+ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
 ENV OFFICE_URL=${OFFICE_HOST}/${OFFICE_PKG} 
 
 # =========================================================================
 
 ENV HLP_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}.tar.gz"
-ENV HLP_DIR="LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb_helppack_${OFFICE_LANG}"
+ENV HLP_DIR="LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb_helppack_${OFFICE_LANG}"
 ENV HLP_URL="${OFFICE_HOST}/${HLP_TAR}" 
 
 # =========================================================================
 
 ENV LANG_TAR="LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}.tar.gz"
-ENV LANG_DIR="LibreOffice_${OFFICE_VER}.3_Linux_x86-64_deb_langpack_${OFFICE_LANG}"
+ENV LANG_DIR="LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb_langpack_${OFFICE_LANG}"
 ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}" 
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.3" 
+ENV LMSBUILD_VERSION="9.5.4" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
