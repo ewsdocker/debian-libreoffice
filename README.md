@@ -1,6 +1,6 @@
-## ewsdocker/debian-libreoffice  
+## ewsdocker/debian-libreoffice:9.5.3  
 
-**LibreOffice 6.1.0 (complete) in a Debian-based Docker image.**  
+**Libre Office 6.1.0 (complete) in a Debian 9.5 Docker image.**  
 
 ____  
 
@@ -40,7 +40,7 @@ After running the above command script, and using the settings indicated, the do
 
 + the executable scripts have been copied to **~/bin**;  
 + the application desktop file(s) have been copied to **~/.local/share/applications**, and are availablie in any _task bar_ menu;  
-+ the associated **debian-libreoffice-"branch"-"version"** executable script (shown below) will be found in **~/.local/bin**, and _should_ be customized with proper local volume names;  
++ the associated **debian-libreoffice-"version"** executable script (shown below) will be found in **~/.local/bin**, and _should_ be customized with proper local volume names;  
 
 ____  
 
@@ -92,7 +92,7 @@ optional step (clean up the **docker images**):
 
     docker rmi ewsdocker/debian-libreoffice:edge  
 
-To create and run the container, run **LibreOffice 9.5.4** from the _Office_ category of any desktop menu, or the following should work from the command-line:
+To create and run the container, run **Libre Office 9.5.4** from the _Office_ category of any desktop menu, or the following should work from the command-line:
 
     ~/.local/bin/debian-libreoffice-9.5.4  
 
