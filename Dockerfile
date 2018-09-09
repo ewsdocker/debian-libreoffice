@@ -7,7 +7,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.4
+# @version 9.5.5
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -36,7 +36,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:10-jre-9.5.4
+FROM ewsdocker/debian-openjre:10-jre-9.5.5
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -102,18 +102,22 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.4" 
+ENV LMSBUILD_VERSION="9.5.5" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
-ENV LMSBUILD_PACKAGE="debian-openjre:10-jre-9.5.4, LibreOffice v ${OFFICE_VER}"
+ENV LMSBUILD_PACKAGE="debian-openjre:10-jre-9.5.5, LibreOffice v ${OFFICE_VER}"
 
 # =========================================================================
 
 RUN apt-get -y update \
  && apt-get -y upgrade \
+ && apt-get -y install \
+            libgtk-3-0 \
+            libgtk-3-bin \
+            libgtk-3-common \ 
  && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
  && wget ${OFFICE_URL} \ 
@@ -135,7 +139,7 @@ COPY scripts/. /
 RUN ln -s /usr/bin/lms/addLanguage /usr/bin/addLanguage \
  && chmod +x /usr/bin/lms/* \
  && chmod 775 /usr/local/bin/debian-libreoffice* \
- && chmod 600 /usr/local/share/applications/debian-libreoffice-${LMSBUILD_VERSION}.desktop
+ && chmod 600 /usr/local/share/applications/${LMSBUILD_NAME}-${LMSBUILD_VERSION}.desktop
 
 # =========================================================================
 
