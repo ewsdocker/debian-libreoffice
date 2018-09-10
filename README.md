@@ -2,10 +2,26 @@
 
 **Libre Office 6.1.0 (complete) in a Debian 9.5 Docker image.**  
 
+The **ewsdocker/debian-libreoffice** image is available in 3 different release branches:
+
+- **master** branch  
+   Based on **ewsdocker/debian-base-gui** and **gtk3**;  
+
+
+- **gtk2** branch  
+   Based on **ewsdocker/debian-base-gui** and **gtk2**; and  
+
+
+- **gtk2-jre** branch  
+   Based on **ewsdocker/debian-openjre**, **gtk2** and **Open-JDK JRE** (to support older, Java-based plug-ins).  
+
 ____  
 
 **NOTE**  
-**ewsdocker/debian-libreoffice** is designed to be used on a Linux system configured to support **Docker user namespaces** .  Refer to [ewsdocker Containers and Docker User Namespaces](https://github.com/ewsdocker/ewsdocker.github.io/wiki/UserNS-Overview) for an overview and information on running **ewsdocker/debian-libreoffice** on a system not configured for **Docker user namespaces**.
+
+**ewsdocker/debian-libreoffice** is designed to be used on a Linux system configured to support **Docker user namespaces** .  
+
+Refer to [ewsdocker Containers and Docker User Namespaces](https://github.com/ewsdocker/ewsdocker.github.io/wiki/UserNS-Overview) for an overview and information on running **ewsdocker/debian-libreoffice** on a system not configured for **Docker user namespaces**.
 ____  
 
 **Visit the [ewsdocker/debian-libreoffice Wiki](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart) for complete documentation of this docker image.**  
@@ -30,6 +46,32 @@ The _default_ values will install all directories and contents in the **docker h
 
 ____  
 
+**ewsdocker/debian-libreoffice:gtk2-9.5.5**  
+  
+    docker run --rm \
+               -v ${HOME}/bin:/userbin \
+               -v ${HOME}/.local:/usrlocal \
+               -e LMS_BASE="${HOME}/.local" \
+               -v ${HOME}/.config/docker:/conf \
+               -v ${HOME}/.config/docker/debian-libreoffice-gtk2-9.5.5:/root \
+               --name=debian-libreoffice-gtk2-9.5.5 \
+           ewsdocker/debian-libreoffice:gtk2-9.5.5 lms-setup  
+
+____  
+
+**ewsdocker/debian-libreoffice:gtk2-jre-9.5.5**  
+  
+    docker run --rm \
+               -v ${HOME}/bin:/userbin \
+               -v ${HOME}/.local:/usrlocal \
+               -e LMS_BASE="${HOME}/.local" \
+               -v ${HOME}/.config/docker:/conf \
+               -v ${HOME}/.config/docker/debian-libreoffice-gtk2-jre-9.5.5:/root \
+               --name=debian-libreoffice-gtk2-jre-9.5.5 \
+           ewsdocker/debian-libreoffice:gtk2-jre-9.5.5 lms-setup  
+
+____  
+
 Refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping) for a discussion of **lms-setup** and what it does.  
 
 ____  
@@ -44,7 +86,7 @@ After running the above command script, and using the settings indicated, the do
 
 ____  
 
-**Executable scripts**  
+**Execution scripts**  
 
 **ewsdocker/debian-libreoffice:9.5.5**
   
@@ -59,43 +101,35 @@ ____
        ewsdocker/debian-libreoffice:9.5.5  
 
 ____  
+
+**ewsdocker/debian-libreoffice:gtk2-9.5.5**
+  
+    docker run -v /etc/localtime:/etc/localtime:ro \
+           -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v ${HOME}/Documents:/documents \
+           -v ${HOME}/Stories:/stories \
+           -v ${HOME}/.config/docker/debian-libreoffice-gtk2-9.5.5:/root \
+           --name=debian-libreoffice-gtk2-9.5.5 \
+       ewsdocker/debian-libreoffice:gtk2-9.5.5  
+
+____  
+
+**ewsdocker/debian-libreoffice:gtk2-jre-9.5.5**
+  
+    docker run -v /etc/localtime:/etc/localtime:ro \
+           -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v ${HOME}/Documents:/documents \
+           -v ${HOME}/Stories:/stories \
+           -v ${HOME}/.config/docker/debian-libreoffice-gtk2-jre-9.5.5:/root \
+           --name=debian-libreoffice-gtk2-jre-9.5.5 \
+       ewsdocker/debian-libreoffice:gtk2-jre-9.5.5  
+
+____  
 Refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping) for a discussion of customizing the executable scripts..  
-
-____  
-
-**Bleeding-edge Testing**  
-
-The _bleeding-edge_ development tag **edge** is the next **Docker** tag release.  This means that, during its lifetime, the **edge** source will undergo many modifications before it becomes useful.  
-
-For the _very brave_, if an _edge_ tag is available, the following  instructions will download, rename and install the _edge_ version.  
-
-Good luck.  Please remember that just because it is named **9.5.6** does **not** mean that it is no longer bleeding-**edge**. Don't expect it to work.
-
-____  
-
-**ewsdocker/debian-libreoffice:edge**  
-
-**edge** is the **Docker** tag for the **GitHub** development version, and future **Docker** release tag, **9.5.6**.
-
-    docker pull ewsdocker/debian-libreoffice:edge
-    docker tag ewsdocker/debian-libreoffice:edge ewsdocker/debian-libreoffice:9.5.6
-    docker run --rm \
-               -v ${HOME}/bin:/userbin \
-               -v ${HOME}/.local:/usrlocal \
-               -e LMS_BASE="${HOME}/.local" \
-               -v ${HOME}/.config/docker:/conf \
-               -v ${HOME}/.config/docker/debian-libreoffice-9.5.6:/root \
-               --name=debian-libreoffice-9.5.6 \
-           ewsdocker/debian-libreoffice:9.5.6 lms-setup  
-
-optional step (clean up the **docker images**):
-
-    docker rmi ewsdocker/debian-libreoffice:edge  
-
-To create and run the container, run **Libre Office 9.5.6** from the _Office_ category of any desktop menu, or the following should work from the command-line:
-
-    ~/.local/bin/debian-libreoffice-9.5.6  
-
 ____  
 
 **About the size of the image**  

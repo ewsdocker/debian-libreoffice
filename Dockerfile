@@ -36,7 +36,6 @@
 #
 # =========================================================================
 # =========================================================================
-#FROM ewsdocker/debian-openjre:10-jre-9.5.5
 FROM ewsdocker/debian-base-gui:9.5.2
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
@@ -82,8 +81,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-ENV OFFICE_HOST=http://pkgnginx
+ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+#ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
@@ -103,7 +102,7 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.5" 
+ENV LMSBUILD_VERSION="gtk2-9.5.5" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
