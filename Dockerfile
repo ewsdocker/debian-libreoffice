@@ -36,7 +36,8 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:10-jre-9.5.5
+#FROM ewsdocker/debian-openjre:10-jre-9.5.5
+FROM ewsdocker/debian-base-gui:9.5.2
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -81,8 +82,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=http://pkgnginx
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
@@ -115,22 +116,26 @@ ENV LMSBUILD_PACKAGE="debian-openjre:10-jre-9.5.5, LibreOffice v ${OFFICE_VER}"
 RUN apt-get -y update \
  && apt-get -y upgrade \
  && apt-get -y install \
-            libgtk-3-0 \
-            libgtk-3-bin \
-            libgtk-3-common \ 
- && mkdir -p /usr/local/share/libreoffice \
+            libgtk2.0-0 \
+            libgtk2.0-bin \
+            libgtk2.0-common \
+ && printf "${LMSBUILD_DOCKER} (${LMSBUILD_PACKAGE}), %s @ %s\n" `date '+%Y-%m-%d'` `date '+%H:%M:%S'` >> /etc/ewsdocker-builds.txt 
+
+RUN mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
  && wget ${OFFICE_URL} \ 
- && wget ${HLP_URL} \
  && tar fxvz ${OFFICE_PKG} \
  && dpkg -i /usr/local/share/libreoffice/${OFFICE_DIR}/DEBS/*.deb \
+ && rm ${OFFICE_PKG} \ 
+ && wget ${HLP_URL} \
  && tar fxvz ${HLP_TAR} \
- && dpkg -i /usr/local/share/libreoffice/${HLP_DIR}/DEBS/*.deb \
+ && dpkg -i /usr/local/share/libreoffice/${HLP_DIR}/DEBS/*.deb \ 
+ && rm ${HLP_TAR} \ 
  && rm -R /usr/local/share/libreoffice \
- && apt-get clean all \
  && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
- && printf "${LMSBUILD_DOCKER} (${LMSBUILD_PACKAGE}), %s @ %s\n" `date '+%Y-%m-%d'` `date '+%H:%M:%S'` >> /etc/ewsdocker-builds.txt 
+ && apt-get clean all 
+
 
 # =========================================================================
 
