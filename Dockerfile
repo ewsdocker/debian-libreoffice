@@ -135,7 +135,6 @@ RUN mkdir -p /usr/local/share/libreoffice \
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
  && apt-get clean all 
 
-
 # =========================================================================
 
 COPY scripts/. /

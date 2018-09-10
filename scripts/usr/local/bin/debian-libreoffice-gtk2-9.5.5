@@ -60,7 +60,7 @@ docker run -v /etc/localtime:/etc/localtime:ro \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v ${HOME}/Documents:/documents \
            -v /media/sf_Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.5:/root \
-           --name=debian-libreoffice-9.5.5 \
-       ewsdocker/debian-libreoffice:9.5.5  
+           -v ${HOME}/.config/docker/debian-libreoffice-gtk2-9.5.5:/root \
+           --name=debian-libreoffice-gtk2-9.5.5 \
+       ewsdocker/debian-libreoffice:gtk2-9.5.5  
        
