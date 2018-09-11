@@ -107,8 +107,9 @@ ENV LMSBUILD_NAME="debian-libreoffice"
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
+ENV LMSBUILD_PARENT="debian-base-gui:9.5.2"
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
-ENV LMSBUILD_PACKAGE="debian-openjre:10-jre-9.5.5, LibreOffice v ${OFFICE_VER}"
+ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
 # =========================================================================
 
