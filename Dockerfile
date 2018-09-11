@@ -2,7 +2,10 @@
 # =========================================================================
 #
 #	Dockerfile
-#	  Dockerfile for Libre Office in a Debian docker image.
+#	  Dockerfile for Libre Office in a Debian docker image using
+#		debian-base-gui,
+#		gtk2,
+#		no Java.
 #
 # =========================================================================
 #
