@@ -3,9 +3,7 @@
 #
 #	Dockerfile
 #	  Dockerfile for Libre Office in a Debian docker image using
-#		debian-base-gui,
-#		gtk3,
-#		no Java.
+#		debian-openjre, gtk3, and Firefox-esr.
 #
 # =========================================================================
 #
@@ -152,7 +150,6 @@ RUN ln -s /usr/bin/lms/addLanguage /usr/bin/addLanguage \
 # =========================================================================
 
 VOLUME /documents
-VOLUME /source
 VOLUME /workspace
 
 # =========================================================================
