@@ -9,7 +9,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.6
+# @version gtk2-firefox-9.5.6
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -60,7 +60,7 @@ docker run -v /etc/localtime:/etc/localtime:ro \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v ${HOME}/Documents:/documents \
            -v /media/sf_Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.6:/root \
-           --name=debian-libreoffice-9.5.6 \
-       ewsdocker/debian-libreoffice:9.5.6  
+           -v ${HOME}/.config/docker/debian-libreoffice-gtk2-firefox-9.5.6:/root \
+           --name=debian-libreoffice-gtk2-firefox-9.5.6 \
+       ewsdocker/debian-libreoffice:gtk2-firefox-9.5.6  
        

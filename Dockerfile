@@ -3,12 +3,12 @@
 #
 #	Dockerfile
 #	  Dockerfile for Libre Office in a Debian docker image using
-#		debian-openjre, gtk3, and Firefox-esr.
+#		debian-openjre, gtk2, and Firefox-esr.
 #
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.6
+# @version gtk2-firefox-9.5.6
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -82,8 +82,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
@@ -103,7 +103,7 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.6" 
+ENV LMSBUILD_VERSION="gtk2-firefox-9.5.6" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
@@ -118,9 +118,9 @@ RUN apt-get -y update \
  && apt-get -y upgrade \
  && apt-get -y install \
             firefox-esr \
-			libgtk-3-0 \
-            libgtk-3-bin \
-            libgtk-3-common \ 
+            libgtk2.0-0 \
+            libgtk2.0-bin \
+            libgtk2.0-common \
             xdg-utils \
  && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
