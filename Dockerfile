@@ -10,7 +10,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.5
+# @version 9.5.6
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -39,7 +39,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-base-gui:9.5.2
+FROM ewsdocker/debian-openjre:10-jre-9.5.5
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -52,10 +52,10 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.1.0 
+ENV OFFICE_VER=6.1.1 
 ENV OFFICE_REL=6.1
 
-ENV OFFICE_LANG_VER=3
+ENV OFFICE_LANG_VER=2
 ENV OFFICE_LANG="en-US"
 
 # =========================================================================
@@ -84,8 +84,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST=http://pkgnginx
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
@@ -105,12 +105,12 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.5" 
+ENV LMSBUILD_VERSION="9.5.6" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
-ENV LMSBUILD_PARENT="debian-base-gui:9.5.2"
+ENV LMSBUILD_PARENT="debian-openjre:10-jre-9.5.5"
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
 ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
@@ -119,12 +119,12 @@ ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 RUN apt-get -y update \
  && apt-get -y upgrade \
  && apt-get -y install \
+            firefox-esr \
 			libgtk-3-0 \
             libgtk-3-bin \
             libgtk-3-common \ 
- && printf "${LMSBUILD_DOCKER} (${LMSBUILD_PACKAGE}), %s @ %s\n" `date '+%Y-%m-%d'` `date '+%H:%M:%S'` >> /etc/ewsdocker-builds.txt 
-
-RUN mkdir -p /usr/local/share/libreoffice \
+            xdg-utils \
+ && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
  && wget ${OFFICE_URL} \ 
  && tar fxvz ${OFFICE_PKG} \
@@ -137,7 +137,8 @@ RUN mkdir -p /usr/local/share/libreoffice \
  && rm -R /usr/local/share/libreoffice \
  && ln -s /opt/libreoffice${OFFICE_REL}/program/soffice /usr/bin/libreoffice \ 
  && PATH=$PATH:/opt/libreoffice${OFFICE_VER}/program \
- && apt-get clean all 
+ && apt-get clean all \
+ && printf "${LMSBUILD_DOCKER} (${LMSBUILD_PACKAGE}), %s @ %s\n" `date '+%Y-%m-%d'` `date '+%H:%M:%S'` >> /etc/ewsdocker-builds.txt 
 
 # =========================================================================
 
@@ -151,6 +152,8 @@ RUN ln -s /usr/bin/lms/addLanguage /usr/bin/addLanguage \
 # =========================================================================
 
 VOLUME /documents
+VOLUME /source
+VOLUME /workspace
 
 # =========================================================================
 
