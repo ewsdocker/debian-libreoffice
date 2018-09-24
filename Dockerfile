@@ -8,7 +8,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version gtk2-firefox-9.5.6
+# @version 9.5.7-gtk2-firefox
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -103,7 +103,7 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="gtk2-firefox-9.5.6" 
+ENV LMSBUILD_VERSION="9.5.7-gtk2-firefox" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
