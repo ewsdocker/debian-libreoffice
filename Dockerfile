@@ -116,10 +116,6 @@ ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
 RUN apt-get -y update \
  && apt-get -y upgrade \
- && apt-get -y install \
-            libgtk2.0-0 \
-            libgtk2.0-bin \
-            libgtk2.0-common \
  && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
  && wget ${OFFICE_URL} \ 
