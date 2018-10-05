@@ -37,7 +37,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:10-jre-9.5.5
+FROM ewsdocker/debian-openjre:9.5.6-gtk3
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -82,8 +82,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
@@ -108,7 +108,7 @@ ENV LMSBUILD_NAME="debian-libreoffice"
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
-ENV LMSBUILD_PARENT="debian-openjre:10-jre-9.5.5"
+ENV LMSBUILD_PARENT="debian-openjre:9.5.6-gtk3"
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
 ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
@@ -118,9 +118,6 @@ RUN apt-get -y update \
  && apt-get -y upgrade \
  && apt-get -y install \
             firefox-esr \
-			libgtk-3-0 \
-            libgtk-3-bin \
-            libgtk-3-common \ 
             xdg-utils \
  && mkdir -p /usr/local/share/libreoffice \
  && cd /usr/local/share/libreoffice \
