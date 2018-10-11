@@ -146,15 +146,15 @@ ____
 
 **ewsdocker/debian-libreoffice:latest**  
   
-    docker run --rm \
-               -v ${HOME}/bin:/userbin \
-               -v ${HOME}/.local:/usrlocal \
-               -e LMS_BASE="${HOME}/.local" \
-               -e LMSBUILD_VERSION="latest"\
-               -v ${HOME}/.config/docker:/conf \
-               -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
-               --name=debian-libreoffice-latest \
-           ewsdocker/debian-libreoffice lms-setup  
+    docker run -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v /etc/localtime:/etc/localtime:ro \
+           -v ${HOME}/Documents:/documents \
+           -v ${HOME}/workspace-libreoffice:/workspace \
+           -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
+           --name=debian-libreoffice-latest \
+       ewsdocker/debian-libreoffice  
 
 ____  
 
