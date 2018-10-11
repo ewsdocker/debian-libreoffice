@@ -8,7 +8,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.7-gtk2
+# @version 9.5.8-gtk2
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -37,7 +37,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:9.5.6-jre-8
+FROM ewsdocker/debian-openjre:9.5.7-jre-8
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -50,10 +50,10 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.1.1 
+ENV OFFICE_VER=6.1.2 
 ENV OFFICE_REL=6.1
 
-ENV OFFICE_LANG_VER=2
+ENV OFFICE_LANG_VER=1
 ENV OFFICE_LANG="en-US"
 
 # =========================================================================
@@ -103,12 +103,12 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.7-gtk2" 
+ENV LMSBUILD_VERSION="9.5.8-gtk2" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
-ENV LMSBUILD_PARENT="debian-openjre:10-jre-9.5.5"
+ENV LMSBUILD_PARENT="debian-openjre:9.5.7-jre-8"
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
 ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
@@ -139,7 +139,8 @@ COPY scripts/. /
 RUN ln -s /usr/bin/lms/addLanguage /usr/bin/addLanguage \
  && chmod +x /usr/bin/lms/* \
  && chmod 775 /usr/local/bin/debian-libreoffice* \
- && chmod 600 /usr/local/share/applications/${LMSBUILD_NAME}-${LMSBUILD_VERSION}.desktop
+ && chmod 600 /usr/local/share/applications/${LMSBUILD_NAME}-${LMSBUILD_VERSION}.desktop \
+ && chmod 600 /usr/local/share/applications/${LMSBUILD_NAME}.desktop
 
 # =========================================================================
 

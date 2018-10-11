@@ -9,7 +9,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.7-gtk2
+# @version latest
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -54,13 +54,13 @@
 #
 # =========================================================================
 
-docker run -v /etc/localtime:/etc/localtime:ro \
-           -e DISPLAY=unix${DISPLAY} \
+docker run -e DISPLAY=unix${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v /etc/localtime:/etc/localtime:ro \
            -v ${HOME}/Documents:/documents \
-           -v /media/sf_Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.7-gtk2:/root \
-           --name=debian-libreoffice-9.5.7-gtk2 \
-       ewsdocker/debian-libreoffice:9.5.7-gtk2  
+           -v ${HOME}/workspace-libreoffice:/workspace \
+           -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
+           --name=debian-libreoffice-latest \
+       ewsdocker/debian-libreoffice  
        
