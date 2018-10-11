@@ -9,7 +9,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.7
+# @version 9.5.8
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -59,8 +59,7 @@ docker run -v /etc/localtime:/etc/localtime:ro \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v ${HOME}/Documents:/documents \
-           -v /media/sf_Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.7:/root \
-           --name=debian-libreoffice-9.5.7 \
-       ewsdocker/debian-libreoffice:9.5.7  
+           -v ${HOME}/.config/docker/debian-libreoffice-9.5.8:/root \
+           --name=debian-libreoffice-9.5.8 \
+       ewsdocker/debian-libreoffice:9.5.8  
        

@@ -72,6 +72,20 @@ ____
 
 ____  
 
+**ewsdocker/debian-libreoffice:latest**  
+  
+    docker run --rm \
+               -v ${HOME}/bin:/userbin \
+               -v ${HOME}/.local:/usrlocal \
+               -e LMS_BASE="${HOME}/.local" \
+               -e LMSBUILD_VERSION="latest"\
+               -v ${HOME}/.config/docker:/conf \
+               -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
+               --name=debian-libreoffice-latest \
+           ewsdocker/debian-libreoffice lms-setup  
+
+____  
+
 Refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping) for a discussion of **lms-setup** and what it does.  
 
 ____  
@@ -129,6 +143,21 @@ ____
        ewsdocker/debian-libreoffice:9.5.7-gtk2-firefox  
 
 ____  
+
+**ewsdocker/debian-libreoffice:latest**  
+  
+    docker run --rm \
+               -v ${HOME}/bin:/userbin \
+               -v ${HOME}/.local:/usrlocal \
+               -e LMS_BASE="${HOME}/.local" \
+               -e LMSBUILD_VERSION="latest"\
+               -v ${HOME}/.config/docker:/conf \
+               -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
+               --name=debian-libreoffice-latest \
+           ewsdocker/debian-libreoffice lms-setup  
+
+____  
+
 Refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping) for a discussion of customizing the executable scripts..  
 ____  
 
