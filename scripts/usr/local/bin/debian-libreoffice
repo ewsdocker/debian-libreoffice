@@ -42,6 +42,7 @@ docker run -e DISPLAY=unix${DISPLAY} \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v /etc/localtime:/etc/localtime:ro \
+           -v /media/sf_Stories:/stories \
            -v ${HOME}/Documents:/documents \
            -v ${HOME}/workspace-libreoffice:/workspace \
            -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
