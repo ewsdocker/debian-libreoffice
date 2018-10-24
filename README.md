@@ -1,4 +1,4 @@
-## ewsdocker/debian-libreoffice:9.5.8  
+## ewsdocker/debian-libreoffice:9.5.9  
 
 **Libre Office 6.1.2 (complete) in a Debian 9.5 Docker image.**  
 
@@ -33,42 +33,42 @@ The following scripts will download the the selected **ewsdocker/debian-libreoff
 
 The _default_ values will install all directories and contents in the **docker host** user's home directory (refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping)),  
 
-**ewsdocker/debian-libreoffice:9.5.8**  
+**ewsdocker/debian-libreoffice:9.5.9**  
   
     docker run --rm \
                -v ${HOME}/bin:/userbin \
                -v ${HOME}/.local:/usrlocal \
                -e LMS_BASE="${HOME}/.local" \
                -v ${HOME}/.config/docker:/conf \
-               -v ${HOME}/.config/docker/debian-libreoffice-9.5.8:/root \
-               --name=debian-libreoffice-9.5.8 \
-           ewsdocker/debian-libreoffice:9.5.8 lms-setup  
+               -v ${HOME}/.config/docker/debian-libreoffice-9.5.9:/root \
+               --name=debian-libreoffice-9.5.9 \
+           ewsdocker/debian-libreoffice:9.5.9 lms-setup  
 
 ____  
 
-**ewsdocker/debian-libreoffice:9.5.8-gtk2**  
+**ewsdocker/debian-libreoffice:9.5.9-gtk2**  
   
     docker run --rm \
                -v ${HOME}/bin:/userbin \
                -v ${HOME}/.local:/usrlocal \
                -e LMS_BASE="${HOME}/.local" \
                -v ${HOME}/.config/docker:/conf \
-               -v ${HOME}/.config/docker/debian-libreoffice-9.5.8-gtk2:/root \
-               --name=debian-libreoffice-9.5.8-gtk2 \
-           ewsdocker/debian-libreoffice:9.5.8-gtk2 lms-setup  
+               -v ${HOME}/.config/docker/debian-libreoffice-9.5.9-gtk2:/root \
+               --name=debian-libreoffice-9.5.9-gtk2 \
+           ewsdocker/debian-libreoffice:9.5.9-gtk2 lms-setup  
 
 ____  
 
-**ewsdocker/debian-libreoffice:9.5.8-gtk2-firefox**  
+**ewsdocker/debian-libreoffice:9.5.9-gtk2-firefox**  
   
     docker run --rm \
                -v ${HOME}/bin:/userbin \
                -v ${HOME}/.local:/usrlocal \
                -e LMS_BASE="${HOME}/.local" \
                -v ${HOME}/.config/docker:/conf \
-               -v ${HOME}/.config/docker/debian-libreoffice-9.5.8-gtk2-firefox:/root \
-               --name=debian-libreoffice-9.5.8-gtk2-firefox \
-           ewsdocker/debian-libreoffice:9.5.8-gtk2-firefox lms-setup  
+               -v ${HOME}/.config/docker/debian-libreoffice-9.5.9-gtk2-firefox:/root \
+               --name=debian-libreoffice-9.5.9-gtk2-firefox \
+           ewsdocker/debian-libreoffice:9.5.9-gtk2-firefox lms-setup  
 
 ____  
 
@@ -102,7 +102,7 @@ ____
 
 **Execution scripts**  
 
-**ewsdocker/debian-libreoffice:9.5.8**
+**ewsdocker/debian-libreoffice:9.5.9**
   
     docker run -v /etc/localtime:/etc/localtime:ro \
            -e DISPLAY=unix${DISPLAY} \
@@ -110,13 +110,13 @@ ____
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v ${HOME}/Documents:/documents \
            -v ${HOME}/Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.8:/root \
-           --name=debian-libreoffice-9.5.8 \
-       ewsdocker/debian-libreoffice:9.5.8  
+           -v ${HOME}/.config/docker/debian-libreoffice-9.5.9:/root \
+           --name=debian-libreoffice-9.5.9 \
+       ewsdocker/debian-libreoffice:9.5.9  
 
 ____  
 
-**ewsdocker/debian-libreoffice:9.5.8-gtk2**
+**ewsdocker/debian-libreoffice:9.5.9-gtk2**
   
     docker run -v /etc/localtime:/etc/localtime:ro \
            -e DISPLAY=unix${DISPLAY} \
@@ -124,13 +124,13 @@ ____
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v ${HOME}/Documents:/documents \
            -v ${HOME}/Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.8-gtk2:/root \
-           --name=debian-libreoffice-9.5.8-gtk2 \
-       ewsdocker/debian-libreoffice:9.5.8-gtk2  
+           -v ${HOME}/.config/docker/debian-libreoffice-9.5.9-gtk2:/root \
+           --name=debian-libreoffice-9.5.9-gtk2 \
+       ewsdocker/debian-libreoffice:9.5.9-gtk2  
 
 ____  
 
-**ewsdocker/debian-libreoffice:9.5.8-gtk2-firefox**
+**ewsdocker/debian-libreoffice:9.5.9-gtk2-firefox**
   
     docker run -v /etc/localtime:/etc/localtime:ro \
            -e DISPLAY=unix${DISPLAY} \
@@ -138,9 +138,9 @@ ____
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v ${HOME}/Documents:/documents \
            -v ${HOME}/Stories:/stories \
-           -v ${HOME}/.config/docker/debian-libreoffice-9.5.8-gtk2-firefox:/root \
-           --name=debian-libreoffice-9.5.8-gtk2-firefox \
-       ewsdocker/debian-libreoffice:9.5.8-gtk2-firefox  
+           -v ${HOME}/.config/docker/debian-libreoffice-9.5.9-gtk2-firefox:/root \
+           --name=debian-libreoffice-9.5.9-gtk2-firefox \
+       ewsdocker/debian-libreoffice:9.5.9-gtk2-firefox  
 
 ____  
 
