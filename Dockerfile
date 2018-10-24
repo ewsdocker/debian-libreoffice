@@ -8,7 +8,7 @@
 # =========================================================================
 #
 # @author Jay Wheeler.
-# @version 9.5.8
+# @version 9.5.9
 # @copyright © 2017, 2018. EarthWalk Software.
 # @license Licensed under the GNU General Public License, GPL-3.0-or-later.
 # @package debian-libreoffice
@@ -37,7 +37,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:9.5.7-gtk3
+FROM ewsdocker/debian-openjre:9.5.8-gtk3
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -82,8 +82,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
@@ -103,12 +103,12 @@ ENV LANG_URL="${OFFICE_HOST}/${LANG_TAR}"
 
 # =========================================================================
 
-ENV LMSBUILD_VERSION="9.5.8" 
+ENV LMSBUILD_VERSION="9.5.9" 
 ENV LMSBUILD_NAME="debian-libreoffice" 
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
-ENV LMSBUILD_PARENT="debian-openjre:9.5.7-gtk3"
+ENV LMSBUILD_PARENT="debian-openjre:9.5.8-gtk3"
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
 ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
