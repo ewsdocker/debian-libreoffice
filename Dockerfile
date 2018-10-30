@@ -37,7 +37,7 @@
 #
 # =========================================================================
 # =========================================================================
-FROM ewsdocker/debian-openjre:9.5.8-jre-8
+FROM ewsdocker/debian-openjre:9.5.9-jre-8
 
 MAINTAINER Jay Wheeler <EarthWalkSoftware@gmail.com>
 
@@ -108,7 +108,7 @@ ENV LMSBUILD_NAME="debian-libreoffice"
 ENV LMSBUILD_REPO=ewsdocker 
 ENV LMSBUILD_REGISTRY="" 
 
-ENV LMSBUILD_PARENT="debian-openjre:9.5.8-jre-8"
+ENV LMSBUILD_PARENT="debian-openjre:9.5.9-jre-8"
 ENV LMSBUILD_DOCKER="${LMSBUILD_REPO}/${LMSBUILD_NAME}:${LMSBUILD_VERSION}" 
 ENV LMSBUILD_PACKAGE="${LMSBUILD_PARENT}, LibreOffice v ${OFFICE_VER}"
 
