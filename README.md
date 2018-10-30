@@ -1,6 +1,6 @@
 ## ewsdocker/debian-libreoffice:9.5.10  
-
 **Libre Office 6.1.2 (complete) in a Debian 9.5 Docker image.**  
+____  
 
 The **ewsdocker/debian-libreoffice** image is available in 3 different release branches:
 
@@ -17,7 +17,7 @@ The **ewsdocker/debian-libreoffice** image is available in 3 different release b
 
 ____  
 
-**NOTE**  
+#### NOTE  
 
 **ewsdocker/debian-libreoffice** is designed to be used on a Linux system configured to support **Docker user namespaces** .  
 
@@ -27,11 +27,27 @@ ____
 **Visit the [ewsdocker/debian-libreoffice Wiki](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart) for complete documentation of this docker image.**  
 ____  
 
-**Installing ewsdocker/debian-libreoffice**  
+### Installing ewsdocker/debian-libreoffice  
 
 The following scripts will download the the selected **ewsdocker/debian-libreoffice** image, create a container, setup and populate the directory structures, create the run-time scripts, and install the application's desktop file(s).  
 
 The _default_ values will install all directories and contents in the **docker host** user's home directory (refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping)),  
+
+____  
+
+**ewsdocker/debian-libreoffice:latest**  
+  
+    docker run --rm \
+               -v ${HOME}/bin:/userbin \
+               -v ${HOME}/.local:/usrlocal \
+               -e LMS_BASE="${HOME}/.local" \
+               -e LMSBUILD_VERSION="latest"\
+               -v ${HOME}/.config/docker:/conf \
+               -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
+               --name=debian-libreoffice-latest \
+           ewsdocker/debian-libreoffice lms-setup  
+
+____  
 
 **ewsdocker/debian-libreoffice:9.5.10**  
   
@@ -72,25 +88,11 @@ ____
 
 ____  
 
-**ewsdocker/debian-libreoffice:latest**  
-  
-    docker run --rm \
-               -v ${HOME}/bin:/userbin \
-               -v ${HOME}/.local:/usrlocal \
-               -e LMS_BASE="${HOME}/.local" \
-               -e LMSBUILD_VERSION="latest"\
-               -v ${HOME}/.config/docker:/conf \
-               -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
-               --name=debian-libreoffice-latest \
-           ewsdocker/debian-libreoffice lms-setup  
-
-____  
-
 Refer to [Mapping docker host resources to the docker container](https://github.com/ewsdocker/debian-libreoffice/wiki/QuickStart#mapping) for a discussion of **lms-setup** and what it does.  
 
 ____  
 
-**Running the installed scripts**
+### Running the installed scripts  
 
 After running the above command script, and using the settings indicated, the docker host directories, mapped as shown in the above tables, will be configured as follows:
 
@@ -100,7 +102,19 @@ After running the above command script, and using the settings indicated, the do
 
 ____  
 
-**Execution scripts**  
+**ewsdocker/debian-libreoffice:latest**  
+  
+    docker run -e DISPLAY=unix${DISPLAY} \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
+           -v /etc/localtime:/etc/localtime:ro \
+           -v ${HOME}/Documents:/documents \
+           -v ${HOME}/workspace-libreoffice:/workspace \
+           -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
+           --name=debian-libreoffice-latest \
+       ewsdocker/debian-libreoffice  
+
+____  
 
 **ewsdocker/debian-libreoffice:9.5.10**
   
@@ -141,20 +155,6 @@ ____
            -v ${HOME}/.config/docker/debian-libreoffice-9.5.10-gtk2-firefox:/root \
            --name=debian-libreoffice-9.5.10-gtk2-firefox \
        ewsdocker/debian-libreoffice:9.5.10-gtk2-firefox  
-
-____  
-
-**ewsdocker/debian-libreoffice:latest**  
-  
-    docker run -e DISPLAY=unix${DISPLAY} \
-           -v /tmp/.X11-unix:/tmp/.X11-unix \
-           -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
-           -v /etc/localtime:/etc/localtime:ro \
-           -v ${HOME}/Documents:/documents \
-           -v ${HOME}/workspace-libreoffice:/workspace \
-           -v ${HOME}/.config/docker/debian-libreoffice-latest:/root \
-           --name=debian-libreoffice-latest \
-       ewsdocker/debian-libreoffice  
 
 ____  
 
