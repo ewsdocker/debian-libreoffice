@@ -50,10 +50,10 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.1.2 
+ENV OFFICE_VER=6.1.3 
 ENV OFFICE_REL=6.1
 
-ENV OFFICE_LANG_VER=1
+ENV OFFICE_LANG_VER=2
 ENV OFFICE_LANG="en-US"
 
 # =========================================================================
@@ -82,8 +82,8 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
-#ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
+#ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
 ENV OFFICE_DIR=LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb 
