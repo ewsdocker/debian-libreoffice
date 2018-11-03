@@ -50,10 +50,10 @@ ENV DEBIAN_FRONTEND noninteractive
 #         command.
 #
 # =========================================================================
-ENV OFFICE_VER=6.1.2 
+ENV OFFICE_VER=6.1.3 
 ENV OFFICE_REL=6.1
 
-ENV OFFICE_LANG_VER=1
+ENV OFFICE_LANG_VER=2
 ENV OFFICE_LANG="en-US"
 
 # =========================================================================
