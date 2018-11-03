@@ -1,5 +1,5 @@
 ## ewsdocker/debian-libreoffice:9.5.11  
-**Libre Office 6.1.2 (complete) in a Debian 9.5 Docker image.**  
+**Libre Office 6.1.3 (complete) in a Debian 9.5 Docker image.**  
 ____  
 
 The **ewsdocker/debian-libreoffice** image is available in 3 different release branches:
