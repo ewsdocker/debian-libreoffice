@@ -1,10 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
-Exec=/home/jay/.local/bin/docker-deb-start-0.0.4 debian-libreoffice:9.5.11
+Exec=/home/jay/.local/bin/docker-deb-start-0.0.4 debian-libreoffice:9.5.12
 Icon=/home/jay/.local/share/icons/libreoffice-logo-1.png
 Type=Application
 Terminal=false
-GenericName=LibreOffice (9.5.11)
-Name=LibreOffice (9.5.11)
+GenericName=LibreOffice (9.5.12)
+Name=LibreOffice (9.5.12)
 StartupNotify=false
 Categories=Office
