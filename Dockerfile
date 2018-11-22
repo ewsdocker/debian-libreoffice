@@ -61,9 +61,9 @@ ENV OFFICE_LANG="en-US"
 # LibreOffice ${OFFICE_VER} for Debian 9 is available from the 
 #    LibreOffice download site:
 #
-# http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
+# https://download.documentfoundation.org/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
 #
-#    HOST: http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/
+#    HOST: https://download.documentfoundation.org/libreoffice/stable/${OFFICE_VER}/deb/x86_64/
 #
 #    PKG:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz
 #    DIR:  LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb
@@ -75,14 +75,14 @@ ENV OFFICE_LANG="en-US"
 # =========================================================================
 #
 #     help pack for US-en:
-# http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
+# https://download.documentfoundation.org/libreoffice/stable/${OFFICE_VER}/deb/x86_64/LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
 #
 #    HLP_TAR:  LibreOffice_${OFFICE_VER}_Linux_x86-64_deb_helppack_en-US.tar.gz
 #    HLP_DIR:  LibreOffice_${OFFICE_VER}.${OFFICE_LANG_VER}_Linux_x86-64_deb_helppack_en-US
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=https://download.documentfoundation.org/libreoffice/stable/${OFFICE_VER}/deb/x86_64
 #ENV OFFICE_HOST="http://alpine-nginx-pkgcache"
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
