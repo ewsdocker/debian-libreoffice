@@ -39,6 +39,7 @@
 # =========================================================================
 
 docker run -e DISPLAY=unix${DISPLAY} \
+           --device /dev/snd \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v ${HOME}/.Xauthority:${HOME}/.Xauthority \
            -v /etc/localtime:/etc/localtime:ro \
