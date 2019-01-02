@@ -82,7 +82,7 @@ ENV OFFICE_LANG="en-US"
 #
 # =========================================================================
 
-ENV OFFICE_HOST=http://mirror.switch.ch/ftp/mirror/tdf/libreoffice/stable/${OFFICE_VER}/deb/x86_64
+ENV OFFICE_HOST=https://download.documentfoundation.org/libreoffice/stable/${OFFICE_VER}/deb/x86_64
 #ENV OFFICE_HOST=http://alpine-nginx-pkgcache
 
 ENV OFFICE_PKG=LibreOffice_${OFFICE_VER}_Linux_x86-64_deb.tar.gz 
